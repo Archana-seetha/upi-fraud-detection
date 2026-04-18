@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 
 # Load dataset
-dataset = pd.read_csv(r'C:\Users\hp\Downloads\upi_fraud_dataset.csv')
+dataset = pd.read_csv('upi_fraud_dataset.csv')
 
 # Drop unwanted columns
 dataset = dataset.drop(['Id', 'upi_number'], axis=1)
