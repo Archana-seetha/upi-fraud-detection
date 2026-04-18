@@ -117,19 +117,14 @@ st.write("Recall:", results[selected_name]["recall"])
 st.write("F1 Score:", results[selected_name]["f1"])
 
 # Prediction
-  if st.button("Predict"):
+if st.button("Predict"):
     input_data = np.array([[trans_hour, trans_day, trans_month, trans_year,
                             category, age, trans_amount, state, zip_code]])
 
     input_scaled = scaler.transform(input_data)
 
-    pred = selected_model.predict(input_scaled)[0]
     pred_prob = selected_model.predict_proba(input_scaled)
-
-    # 🔥 Identify fraud class index dynamically
-    fraud_class_index = list(selected_model.classes_).index(1) if 1 in selected_model.classes_ else 0
-
-    risk = pred_prob[0][fraud_class_index] * 100
+    risk = pred_prob[0][1] * 100
 
     st.write(f"Fraud Risk: {risk:.2f}%")
 
